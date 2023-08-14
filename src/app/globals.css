@@ -2,26 +2,31 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+@layer components {
+  .button {
+    @apply rounded border px-2 py-1 font-semibold transition duration-200 ease-out md:px-9 md:py-2;
+  }
+  .outlineBtn {
+    @apply border-blue-600 bg-transparent hover:bg-blue-600 hover:text-white;
+  }
+  .solidBtn {
+    @apply border-transparent bg-blue-600 text-white hover:border-blue-600 hover:bg-transparent hover:text-black;
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+@layer utilities {
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
+.filterLi {
+  @apply w-full border-b border-gray-200 sm:border-b-0 sm:border-r;
+}
+
+html,
+a {
+  scroll-behavior: smooth !important;
 }
