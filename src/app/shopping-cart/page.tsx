@@ -7,9 +7,7 @@ import { toast } from "react-hot-toast";
 
 export default function ShoppingCart() {
   const [total, setTotal] = useState<number>(0);
-  const [products, setProducts] = useState<TProduct[]>(
-    JSON.parse(localStorage.getItem("carts") as string) || [],
-  );
+  const [products, setProducts] = useState<TProduct[]>([]);
 
   function removeFromCart(id: number, title: string) {
     const newProducts = products.filter((product) => product.id !== id);
@@ -46,6 +44,13 @@ export default function ShoppingCart() {
       setProducts([]);
     }
   }
+
+  useEffect(() => {
+    const cartProducts = localStorage.getItem("carts");
+    if (cartProducts) {
+      setProducts(JSON.parse(cartProducts));
+    }
+  }, []);
 
   useEffect(() => {
     const total = products.reduce(
